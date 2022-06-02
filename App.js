@@ -26,7 +26,7 @@ const App: () => Node = () => {
           alignItems: "center",
         }}
       >
-        <Text>Crash</Text>
+        <Text>Click to Crash</Text>
       </TouchableOpacity>
     </View>
   );
