@@ -7,11 +7,21 @@
  */
 
 import type { Node } from "react";
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Crashes from "appcenter-crashes";
 
 const App: () => Node = () => {
+  useEffect(() => {
+    const checkPreviousSession = async () => {
+      const didCrash = await Crashes.hasCrashedInLastSession();
+      if (didCrash) {
+        const report = await Crashes.lastSessionCrashReport();
+        alert("Sorry about that crash, we're working on a solution");
+      }
+    };
+    checkPreviousSession();
+  }, []);
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <TouchableOpacity
