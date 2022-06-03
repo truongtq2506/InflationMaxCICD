@@ -67,7 +67,7 @@ const App: () => Node = () => {
           alignItems: "center",
         }}
       >
-        <Text>Calculate Inflation</Text>
+        <Text>Calculate Inflation Appcenter</Text>
       </TouchableOpacity>
     </View>
   );
