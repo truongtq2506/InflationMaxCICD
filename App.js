@@ -10,6 +10,7 @@ import type { Node } from "react";
 import React, { useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Crashes from "appcenter-crashes";
+import Analytics from "appcenter-analytics";
 
 const App: () => Node = () => {
   useEffect(() => {
@@ -25,7 +26,7 @@ const App: () => Node = () => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <TouchableOpacity
-        onPress={() => Crashes.generateTestCrash()}
+        onPress={() => Analytics.trackEvent("calculate_inflation", { Internet: "5G", GPS: "On" })}
         style={{
           padding: 10,
           paddingHorizontal: 30,
@@ -36,7 +37,7 @@ const App: () => Node = () => {
           alignItems: "center",
         }}
       >
-        <Text>Crash</Text>
+        <Text>Calculate Inflation</Text>
       </TouchableOpacity>
     </View>
   );
