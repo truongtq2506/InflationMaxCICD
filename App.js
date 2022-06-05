@@ -57,6 +57,7 @@ const App: () => Node = () => {
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Handle By Max</Text>
       <TextInput placeholder="Current inflation rate"
                  style={styles.textBox} keyboardType="decimal-pad"
                  onChangeText={(inflationRate) => setState({ ...state, inflationRate })} />
