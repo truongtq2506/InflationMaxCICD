@@ -35,6 +35,26 @@ const App: () => Node = () => {
     };
     checkPreviousSession();
   }, []);
+  const calculateInflationImpact = (value, inflationRate, time) => {
+    return value / Math.pow(1 + inflationRate, time);
+  };
+
+
+  const calculate = () => {
+    const afterInflation = calculateInflationImpact(state.amount, state.inflationRate / 100, state.timeInYears);
+    const atRiskFree = state.amount * Math.pow(1 + state.riskFreeRate / 100, state.timeInYears);
+    const atRiskFreeAfterInflation = calculateInflationImpact(atRiskFree, state.inflationRate / 100, state.timeInYears);
+    const difference = atRiskFreeAfterInflation - afterInflation;
+
+    setState({
+      ...state,
+      afterInflation,
+      atRiskFree,
+      atRiskFreeAfterInflation,
+      difference,
+    });
+  };
+
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Handle By Max</Text>
@@ -57,7 +77,10 @@ const App: () => Node = () => {
       <Text style={styles.label}>Which will be worth ${state.atRiskFreeAfterInflation} after inflation.</Text>
       <Text style={styles.label}>A difference of: ${state.difference}.</Text>
       <TouchableOpacity
-        onPress={() => Analytics.trackEvent("calculate_inflation", { Internet: "5G", GPS: "On" })}
+        onPress={() => {
+          calculate();
+          Analytics.trackEvent("calculate_inflation", { Internet: "5G", GPS: "On" });
+        }}
         style={{
           padding: 10,
           paddingHorizontal: 30,
@@ -87,7 +110,7 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1,
     marginTop: 10,
-    width: 200
+    width: 200,
   },
   scrollView: {
     backgroundColor: Colors.lighter,

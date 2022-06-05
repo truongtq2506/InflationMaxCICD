@@ -38,6 +38,16 @@
                ReferencedContainer = "container:InflationMax.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0BFD1962284A6C3D00F05120"
+               BuildableName = "InflationMaxUITests.xctest"
+               BlueprintName = "InflationMaxUITests"
+               ReferencedContainer = "container:InflationMax.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
